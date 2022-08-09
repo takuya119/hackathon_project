@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_09_112748) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_09_113449) do
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "public_facility_id", null: false
@@ -18,6 +18,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_112748) do
     t.datetime "updated_at", null: false
     t.index ["public_facility_id"], name: "index_bookmarks_on_public_facility_id"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "date", null: false
+    t.text "detail"
+    t.integer "capacity"
+    t.integer "user_id", null: false
+    t.integer "public_facility_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["public_facility_id"], name: "index_events_on_public_facility_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "facility_comments", force: :cascade do |t|
@@ -94,6 +107,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_112748) do
 
   add_foreign_key "bookmarks", "public_facilities"
   add_foreign_key "bookmarks", "users"
+  add_foreign_key "events", "public_facilities"
+  add_foreign_key "events", "users"
   add_foreign_key "facility_comments", "public_facilities"
   add_foreign_key "facility_replies", "facility_comments"
   add_foreign_key "public_facilities", "municipalities"
