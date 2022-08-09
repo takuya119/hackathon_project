@@ -38,9 +38,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_113449) do
     t.text "content", null: false
     t.integer "comment_type", default: 0, null: false
     t.integer "public_facility_id", null: false
+    t.integer "room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["public_facility_id"], name: "index_facility_comments_on_public_facility_id"
+    t.index ["room_id"], name: "index_facility_comments_on_room_id"
   end
 
   create_table "facility_replies", force: :cascade do |t|
@@ -66,9 +68,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_113449) do
     t.string "category", null: false
     t.string "reserve_url"
     t.integer "municipality_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["municipality_id"], name: "index_public_facilities_on_municipality_id"
+    t.index ["user_id"], name: "index_public_facilities_on_user_id"
   end
 
   create_table "room_tags", force: :cascade do |t|
@@ -110,8 +114,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_113449) do
   add_foreign_key "events", "public_facilities"
   add_foreign_key "events", "users"
   add_foreign_key "facility_comments", "public_facilities"
+  add_foreign_key "facility_comments", "rooms"
   add_foreign_key "facility_replies", "facility_comments"
   add_foreign_key "public_facilities", "municipalities"
+  add_foreign_key "public_facilities", "users"
   add_foreign_key "room_tags", "rooms"
   add_foreign_key "rooms", "public_facilities"
 end
