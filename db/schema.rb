@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_09_111841) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_09_112748) do
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "public_facility_id", null: false
@@ -20,18 +20,37 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_111841) do
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
+  create_table "facility_comments", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "content", null: false
+    t.integer "comment_type", default: 0, null: false
+    t.integer "public_facility_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["public_facility_id"], name: "index_facility_comments_on_public_facility_id"
+  end
+
+  create_table "facility_replies", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "content", null: false
+    t.integer "facility_comment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["facility_comment_id"], name: "index_facility_replies_on_facility_comment_id"
+  end
+
   create_table "municipalities", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "public_facilities", force: :cascade do |t|
-    t.string "name"
-    t.string "address"
-    t.string "longitude"
-    t.string "latitude"
-    t.string "category"
+    t.string "name", null: false
+    t.string "address", null: false
+    t.string "longitude", null: false
+    t.string "latitude", null: false
+    t.string "category", null: false
     t.string "reserve_url"
     t.integer "municipality_id", null: false
     t.datetime "created_at", null: false
@@ -40,7 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_111841) do
   end
 
   create_table "room_tags", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.integer "room_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -48,8 +67,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_111841) do
   end
 
   create_table "rooms", force: :cascade do |t|
-    t.string "name"
-    t.integer "fee"
+    t.string "name", null: false
+    t.integer "fee", null: false
     t.integer "capacity"
     t.integer "public_facility_id", null: false
     t.datetime "created_at", null: false
@@ -75,6 +94,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_111841) do
 
   add_foreign_key "bookmarks", "public_facilities"
   add_foreign_key "bookmarks", "users"
+  add_foreign_key "facility_comments", "public_facilities"
+  add_foreign_key "facility_replies", "facility_comments"
   add_foreign_key "public_facilities", "municipalities"
   add_foreign_key "room_tags", "rooms"
   add_foreign_key "rooms", "public_facilities"

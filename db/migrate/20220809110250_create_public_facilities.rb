@@ -1,11 +1,11 @@
 class CreatePublicFacilities < ActiveRecord::Migration[7.0]
   def change
     create_table :public_facilities do |t|
-      t.string :name
-      t.string :address
-      t.string :longitude
-      t.string :latitude
-      t.string :category
+      t.string :name, null: false
+      t.string :address, null: false
+      t.string :longitude, null: false
+      t.string :latitude, null: false
+      t.string :category, null: false
       t.string :reserve_url
       t.references :municipality, null: false, foreign_key: true
 
