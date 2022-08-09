@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_09_121053) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_09_121416) do
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "public_facility_id", null: false
@@ -86,6 +86,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_121053) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "participants", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_participants_on_event_id"
+    t.index ["user_id"], name: "index_participants_on_user_id"
+  end
+
   create_table "public_facilities", force: :cascade do |t|
     t.string "name", null: false
     t.string "address", null: false
@@ -145,6 +154,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_121053) do
   add_foreign_key "facility_comments", "public_facilities"
   add_foreign_key "facility_comments", "rooms"
   add_foreign_key "facility_replies", "facility_comments"
+  add_foreign_key "participants", "events"
+  add_foreign_key "participants", "users"
   add_foreign_key "public_facilities", "municipalities"
   add_foreign_key "public_facilities", "users"
   add_foreign_key "room_tags", "rooms"
