@@ -1,2 +1,14 @@
 <h1>Users#new</h1>
 <p>Find me in app/views/users/new.html.erb</p>
+<%= form_with model: @user do |f| %>
+  <%= f.label :name, "名前", class: "col-sm-2 col-form-label" %>
+  <%= f.text_field :name, class: "form-control" %>
+  <%= f.label :email, "Eメール", class: "col-sm-2 col-form-label" %>
+  <%= f.email_field :email, class: "form-control" %>
+  <%= f.label :password, "パスワード", class: "col-sm-2 col-form-label" %>
+  <%= f.password_field :password, class: "form-control"%>
+  <%= f.label :password_confirmation, "パスワード確認", class: "col-sm-2 col-form-label" %>
+  <%= f.password_field :password_confirmation, class: "form-control"%>
+
+  <%= f.submit "登録", disable_with: 'Submiting...', class: "btn btn-primary mt-3" %>
+<% end %>
