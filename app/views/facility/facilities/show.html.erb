@@ -1,18 +1,45 @@
-<h1>施設名: <%= @public_facility.name %></h1>
-<p>住所: <%= @public_facility.address %></p>
-<p>予約URL: <%= @public_facility.reserve_url %></p>
+<div class="container">
+  <div class="card text-center m-4">
+    <div class="card-body">
+      <h2 class="card-title"><%= @public_facility.name %></h2>
+      <p class="card-text"><%= @public_facility.address %></p>
+      <a href=<%= @public_facility.reserve_url %> class="btn btn-primary">予約ページ</a>
+    </div>
+    <div class="card-footer text-muted">
+      <% if logged_in? %>
+        <%= render 'bookmark_button', public_facility: @public_facility %>
+      <% else %>
+        <p>ユーザー登録するとブックマークが可能です</p>
+      <% end %>
+    </div>
+  </div>
 
-<% @rooms.each do |room| %>
-  <h2>部屋: <%= room.name %></h2>
-  <p>値段: <%= room.fee %></p>
-  <p>利用人数: <%= room.capacity %></p>
-<% end %>
+  <div class="row mb-5">
+    <% @rooms.each do |room| %>
+      <div class="col-sm-3">
+        <div class="card text-center mx-auto" style="width: 18rem;">
+          <div class="card-body">
+            <h3 class="card-title"><%= room.name %></h3>
+            <p class="card-text">値段: <%= room.fee %></p>
+            <p class="card-text">利用人数: <%= room.capacity %></p>
+            <a href="#" class="btn btn-primary">ルーム宛コメント等</a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
-<h1>ブックマーク</h1>
-<% if logged_in? %>
-  <%= render 'bookmark_button', public_facility: @public_facility %>
-  <% else %>
-  <p>ユーザー登録するとブックマークが可能です</p>
-<% end %>
+  <div class="row">
+    <div class="col-sm-8 offset-sm-2">
+      <h1 class="mb-3">コメント</h1> <!-- ログイン無しでコメント可 -->
+      <table class="table">
+        <%= render partial: 'comment', collection: @comments %>
+      </table>
+    </div>
+  </div>
 
-<h1>コメント</h1>
+
+  <%= render 'comment_form', { public_facility: @public_facility,
+                              facility_comment: @facility_comment,
+                              url: facility_comments_path(@public_facility) } %>
+</div>
