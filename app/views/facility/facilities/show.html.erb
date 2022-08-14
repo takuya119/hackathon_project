@@ -1,2 +1,18 @@
-<h1>Facility::Facilities#show</h1>
-<p>Find me in app/views/facility/facilities/show.html.erb</p>
+<h1>施設名: <%= @public_facility.name %></h1>
+<p>住所: <%= @public_facility.address %></p>
+<p>予約URL: <%= @public_facility.reserve_url %></p>
+
+<% @rooms.each do |room| %>
+  <h2>部屋: <%= room.name %></h2>
+  <p>値段: <%= room.fee %></p>
+  <p>利用人数: <%= room.capacity %></p>
+<% end %>
+
+<h1>ブックマーク</h1>
+<% if logged_in? %>
+  <%= render 'bookmark_button', public_facility: @public_facility %>
+  <% else %>
+  <p>ユーザー登録するとブックマークが可能です</p>
+<% end %>
+
+<h1>コメント</h1>

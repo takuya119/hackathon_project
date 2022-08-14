@@ -1,0 +1,3 @@
+<%= link_to facility_bookmark_path(public_facility, current_user.bookmarks.find_by(public_facility: public_facility)), data: {turbo_method: :delete} do %>
+    <p>ブックマークを外す</p> <!-- icon等に変更予定 -->
+<% end %>
