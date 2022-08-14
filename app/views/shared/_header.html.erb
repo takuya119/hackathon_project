@@ -2,7 +2,7 @@
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
       <span class="navbar-brand mb-0 h1">Navbar</span>
-      <% if current_user %>
+      <% if logged_in? %>
         <%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete }, class:"btn btn-primary" %>
       <% else %>
         <div>
