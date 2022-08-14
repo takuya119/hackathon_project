@@ -1,5 +1,7 @@
 class Event::EventsController < ApplicationController
   def index
+    @q = Event.ransack(params[:q])
+    @events = @q.result(distinct: true).includes(:user).order(created_at: :desc)
   end
 
   def new
