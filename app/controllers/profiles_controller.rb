@@ -7,6 +7,9 @@ class ProfilesController < ApplicationController
 
   def update
     @user.update(user_params)
+
+    binding.pry
+
     redirect_to profile_path
   end
 
