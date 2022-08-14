@@ -6,11 +6,11 @@ class ProfilesController < ApplicationController
   def edit; end
 
   def update
-    @user.update(user_params)
-
-    binding.pry
-
-    redirect_to profile_path
+    if @user.update(user_params)
+      redirect_to profile_path
+    else
+      render :edit
+    end
   end
 
   def destroy
