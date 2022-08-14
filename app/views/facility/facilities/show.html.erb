@@ -1,13 +1,13 @@
-<div class="container">
+<div class="container mb-5">
   <div class="card text-center m-4">
     <div class="card-body">
-      <h2 class="card-title"><%= @public_facility.name %></h2>
-      <p class="card-text"><%= @public_facility.address %></p>
-      <a href=<%= @public_facility.reserve_url %> class="btn btn-primary">予約ページ</a>
+      <h2 class="card-title"><%= @facility.name %></h2>
+      <p class="card-text"><%= @facility.address %></p>
+      <a href=<%= @facility.reserve_url %> class="btn btn-primary">予約ページ</a>
     </div>
     <div class="card-footer text-muted">
       <% if logged_in? %>
-        <%= render 'bookmark_button', public_facility: @public_facility %>
+        <%= render 'bookmark_button', facility: @facility %>
       <% else %>
         <p>ユーザー登録するとブックマークが可能です</p>
       <% end %>
@@ -35,11 +35,9 @@
       <table class="table">
         <%= render partial: 'comment', collection: @comments %>
       </table>
+      <%= render 'comment_form', { facility: @facility,
+                              comment: @comment,
+                              url: facility_comments_path(@facility) } %>
     </div>
   </div>
-
-
-  <%= render 'comment_form', { public_facility: @public_facility,
-                              facility_comment: @facility_comment,
-                              url: facility_comments_path(@public_facility) } %>
 </div>

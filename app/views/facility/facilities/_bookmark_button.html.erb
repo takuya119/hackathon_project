@@ -1,5 +1,5 @@
-<% if current_user.bookmark?(public_facility) %>
-  <%= render 'unbookmark', public_facility: public_facility %>
+<% if current_user.bookmark?(facility) %>
+  <%= render 'unbookmark', facility: facility %>
 <% else %>
-  <%= render 'bookmark', public_facility: public_facility %>
+  <%= render 'bookmark', facility: facility %>
 <% end %>

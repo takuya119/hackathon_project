@@ -3,10 +3,10 @@ class Facility::FacilitiesController < ApplicationController
   end
 
   def show
-    @public_facility = PublicFacility.find(params[:id])
-    @rooms = @public_facility.rooms
-    @comments = @public_facility.facility_comments # orderを検討
-    @facility_comment = FacilityComment.new
+    @facility = PublicFacility.find(params[:id])
+    @rooms = @facility.rooms
+    @comments = @facility.facility_comments # orderを検討
+    @comment = FacilityComment.new
   end
 
   def bookmarks
