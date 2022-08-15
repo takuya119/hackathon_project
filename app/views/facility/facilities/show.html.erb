@@ -3,7 +3,7 @@
     <div class="card-body">
       <h2 class="card-title"><%= @facility.name %></h2>
       <p class="card-text"><%= @facility.address %></p>
-      <a href=<%= @facility.reserve_url %> class="btn btn-primary">予約ページ</a>
+      <%= link_to '予約ページ', @facility.reserve_url, class: 'btn btn-primary' %>
     </div>
     <div class="card-footer text-muted">
       <% if logged_in? %>
