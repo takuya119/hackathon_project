@@ -1,6 +1,6 @@
 class PasswordResetsController < ApplicationController
   before_action :set_token, only: %i[edit update]
-  
+
   def new; end
 
   def create
@@ -10,8 +10,6 @@ class PasswordResetsController < ApplicationController
   end
 
   def edit
-    @user = User.load_from_reset_password_token(@token)
-
     if @user.blank?
       not_authenticated
       return
@@ -19,8 +17,6 @@ class PasswordResetsController < ApplicationController
   end
 
   def update
-    @user = User.load_from_reset_password_token(params[:id])
-
     return not_authenticated if @user.blank?
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.change_password(params[:user][:password])
@@ -34,5 +30,6 @@ class PasswordResetsController < ApplicationController
 
   def set_token
     @token = params[:id]
+    @user = User.load_from_reset_password_token(@token)
   end
 end
