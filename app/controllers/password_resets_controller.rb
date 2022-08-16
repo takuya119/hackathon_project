@@ -1,5 +1,6 @@
 class PasswordResetsController < ApplicationController
   before_action :set_token, only: %i[edit update]
+  
   def new; end
 
   def create
