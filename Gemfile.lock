@@ -66,6 +66,8 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    addressable (2.8.0)
+      public_suffix (>= 2.0.2, < 5.0)
     bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.13.0)
@@ -90,6 +92,15 @@ GEM
     jsbundling-rails (1.0.3)
       railties (>= 6.0.0)
     jwt (2.4.1)
+    launchy (2.5.0)
+      addressable (~> 2.7)
+    letter_opener (1.8.1)
+      launchy (>= 2.2, < 3)
+    letter_opener_web (2.0.0)
+      actionmailer (>= 5.2)
+      letter_opener (~> 1.7)
+      railties (>= 5.2)
+      rexml
     loofah (2.18.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -132,6 +143,7 @@ GEM
     pry-byebug (3.9.0)
       byebug (~> 11.0)
       pry (~> 0.13.0)
+    public_suffix (4.0.7)
     puma (5.6.4)
       nio4r (~> 2.0)
     racc (1.6.0)
@@ -166,6 +178,7 @@ GEM
       zeitwerk (~> 2.5)
     rake (13.0.6)
     redis (4.7.1)
+    rexml (3.2.5)
     ruby2_keywords (0.0.5)
     sorcery (0.16.3)
       bcrypt (~> 3.1)
@@ -207,6 +220,7 @@ DEPENDENCIES
   bootsnap
   cssbundling-rails
   jsbundling-rails
+  letter_opener_web (~> 2.0)
   pry-byebug
   puma (~> 5.0)
   rails (~> 7.0.3)
