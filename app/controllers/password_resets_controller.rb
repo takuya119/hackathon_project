@@ -10,10 +10,7 @@ class PasswordResetsController < ApplicationController
   end
 
   def edit
-    if @user.blank?
-      not_authenticated
-      return
-    end
+    return not_authenticated if @user.blank?
   end
 
   def update
@@ -22,7 +19,7 @@ class PasswordResetsController < ApplicationController
     if @user.change_password(params[:user][:password])
       redirect_to login_path
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
