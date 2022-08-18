@@ -1,2 +1,9 @@
-<h1>Profiles#edit</h1>
-<p>Find me in app/views/profiles/edit.html.erb</p>
+<h1>プロフィール編集画面</h1>
+<%= form_with model: @user, url: profile_path, method: :patch do |f| %>
+  <%= f.label :name, "名前", class: "col-sm-2 col-form-label" %>
+  <%= f.text_field :name, class: "form-control" %>
+  <%= f.label :email, "Eメール", class: "col-sm-2 col-form-label" %>
+  <%= f.email_field :email, class: "form-control" %>
+
+  <%= f.submit "更新", disable_with: '更新中...', class: "btn btn-primary mt-3" %>
+<% end %>
