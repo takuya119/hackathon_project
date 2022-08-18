@@ -1,0 +1,7 @@
+<%= turbo_stream.append('comment_table',
+                        partial: 'facility/facilities/comment',
+                        locals: { comment: @comment }) %>
+
+<%= turbo_stream.replace 'comment_form',
+                          partial: 'facility/facilities/comment_form',
+                          locals: { facility: @facility, comment: FacilityComment.new, url: facility_comments_path(@facility) } %>

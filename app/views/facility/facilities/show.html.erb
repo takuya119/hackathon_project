@@ -33,7 +33,9 @@
     <div class="col-sm-8 offset-sm-2">
       <h1 class="mb-3">コメント</h1> <!-- ログイン無しでコメント可 -->
       <table class="table">
-        <%= render partial: 'comment', collection: @comments %>
+        <tbody id='comment_table'>
+          <%= render partial: 'comment', collection: @comments %>
+        </tbody>
       </table>
       <%= render 'comment_form', { facility: @facility,
                               comment: @comment,
