@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :participants, dependent: :destroy
+  has_many :public_facilities, dependent: :destroy
 
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
