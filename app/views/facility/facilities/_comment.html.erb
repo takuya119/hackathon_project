@@ -2,7 +2,7 @@
   <td>
     <p class="fs-5"><%= comment.name %></p>
     <div class="fs-4">
-      <%= simple_format(comment.content) %>
+      <%= simple_format comment.content, class: 'mb-0' %>
     </div>
   </td>
 </tr>

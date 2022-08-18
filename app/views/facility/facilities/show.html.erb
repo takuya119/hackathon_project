@@ -9,7 +9,7 @@
       <% if logged_in? %>
         <%= render 'bookmark_button', facility: @facility %>
       <% else %>
-        <p>ユーザー登録するとブックマークが可能です</p>
+        <p class="mb-0">ユーザー登録するとブックマークが可能です</p>
       <% end %>
     </div>
   </div>
@@ -22,7 +22,7 @@
             <h3 class="card-title"><%= room.name %></h3>
             <p class="card-text">値段: <%= room.fee %></p>
             <p class="card-text">利用人数: <%= room.capacity %></p>
-            <a href="#" class="btn btn-primary">ルーム宛コメント等</a>
+            <%= link_to 'ルーム宛コメント等', '#', class: 'btn btn-primary' %>
           </div>
         </div>
       </div>
