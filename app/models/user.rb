@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :bookmark_facilities, through: :bookmarks, source: :public_facility
   has_many :events, dependent: :destroy
   has_many :participants, dependent: :destroy
-  has_many :public_facilities # 必要そうなので関連付け
+  has_many :public_facilities, dependent: :destroy
 
   enum role: { general: 0, admin: 1 } # 変更する可能性あり
 
