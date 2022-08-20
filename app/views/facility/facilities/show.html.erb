@@ -32,11 +32,9 @@
   <div class="row">
     <div class="col-sm-8 offset-sm-2">
       <h1 class="mb-3">コメント</h1> <!-- ログイン無しでコメント可 -->
-      <table class="table">
-        <tbody id='comment_table'>
-          <%= render partial: 'comment', collection: @comments %>
-        </tbody>
-      </table>
+      <%= turbo_frame_tag 'comments' do %>
+        <%= render partial: 'comment_thread', collection: @comments, as: 'comment' %>
+      <% end %>
       <%= render 'comment_form', { facility: @facility,
                               comment: @comment,
                               url: facility_comments_path(@facility) } %>

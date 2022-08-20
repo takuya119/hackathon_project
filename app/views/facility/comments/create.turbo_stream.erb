@@ -1,5 +1,5 @@
-<%= turbo_stream.append('comment_table',
-                        partial: 'facility/facilities/comment',
+<%= turbo_stream.append('comments',
+                        partial: 'facility/facilities/comment_thread',
                         locals: { comment: @comment }) %>
 
 <%= turbo_stream.replace 'comment_form',

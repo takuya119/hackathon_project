@@ -19,11 +19,11 @@ Rails.application.routes.draw do
     resources :facilities, only: %i[show] do
       get 'bookmarks', on: :collection
       resources :bookmarks, only: %i[create destroy]
-      resources :comments, only: %i[create destroy]
+      resources :comments, only: %i[create show destroy]
     end
     scope 'fac' do
       resources :comments, only: %i[] do
-        resources :replies, only: %i[create destroy], as: 'fac_replies'
+        resources :replies, only: %i[new create destroy], as: 'fac_replies'
       end
     end
   end
