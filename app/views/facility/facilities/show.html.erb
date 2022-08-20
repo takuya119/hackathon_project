@@ -7,7 +7,7 @@
     </div>
     <div class="card-footer text-muted">
       <% if logged_in? %>
-        <%= render 'bookmark_button', facility: @facility %>
+        <%= render 'facility/bookmarks/bookmark_button', facility: @facility %>
       <% else %>
         <p class="mb-0">ユーザー登録するとブックマークが可能です</p>
       <% end %>
