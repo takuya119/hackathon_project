@@ -1,5 +1,5 @@
 <%= turbo_stream.append("comment-thread-#{@comment.id}",
-                        partial: 'facility/facilities/reply',
+                        partial: 'facility/replies/reply',
                         locals: { reply: @reply }) %>
 
 <%= turbo_stream.update @comment do %>
