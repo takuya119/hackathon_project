@@ -1,2 +1,21 @@
 <h1>PasswordResets#edit</h1>
 <p>Find me in app/views/password_resets/edit.html.erb</p>
+
+<h1>パスワードリセット</h1>
+<%= form_with model: @user, url: password_reset_path(@token) do |f| %>
+  <div class="form-group">
+    <%= f.label :email,  'Eメール' %>
+    <%= @user.email %>
+  </div>
+  <div class="form-group mt-3">
+    <%= f.label :password, 'パスワード' %>
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :password_confirmation, 'パスワード確認' %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'パスワードを変更する', class: 'btn btn-primary mt-3 ' %>
+  </div>
+<% end %>
