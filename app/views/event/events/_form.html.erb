@@ -1,0 +1,24 @@
+<%= form_with model: event, local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+  <%# 現状だとイベント開始時間の入力のみで、終了時間の設定ができない？ %>
+    <%= f.label :date %>
+    <%= f.datetime_local_field :date, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :detail %>
+    <%= f.text_area :detail, class: 'form-control', rows: 10 %>
+  </div>
+  <div class="form-group">
+    <%= f.label :capacity %>
+    <%= f.number_field :capacity, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :public_facility_id %>
+    <%= f.select :public_facility_id, PublicFacility.pluck(:name, :id) , { include_blank: '利用施設' }, class: 'form-control' %>
+  </div>
+  <%= f.submit class: 'btn btn-primary' %>
+<% end %>
