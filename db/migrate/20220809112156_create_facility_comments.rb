@@ -6,6 +6,7 @@ class CreateFacilityComments < ActiveRecord::Migration[7.0]
       t.integer :comment_type, null: false, default: 0
       t.references :public_facility, null: false, foreign_key: true
       t.references :room, foreign_key: true
+      t.references :user, foreign_key: true
 
       t.timestamps
     end

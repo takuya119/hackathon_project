@@ -1,23 +1,33 @@
 FactoryBot.define do
   factory :event_tag do
-    trait :koto_ku_bunka_center_event_study do
-      name { '勉強' }
-      event { Event.joins(:public_facility).find_by(public_facility: { name: '江東区文化センター'} ) || create(:event, :koto_ku_bunka_center_event) }
+    trait :unscheduled_event_study do
+      event { Event.find_by(status: 0) || create(:event, status: 0) }
+      tag { Tag.find_by(name: '学習会') || create(:tag, :study_session) }
     end
 
-    trait :toyosu_bunka_center_event_work do
-      name { '仕事' }
-      event { Event.joins(:public_facility).find_by(public_facility: { name: '豊洲文化センター'} ) || create(:event, :toyosu_bunka_center_event) }
+    trait :unscheduled_event_meeting do
+      event { Event.find_by(status: 0) || create(:event, status: 0) }
+      tag { Tag.find_by(name: '交流会') || create(:tag, :meeting) }
     end
 
-    trait :sports_kaikan_event_tennis do
-      name { 'テニス' }
-      event { Event.joins(:public_facility).find_by(public_facility: { name: 'スポーツ会館'} ) || create(:event, :sports_kaikan_event) }
+    trait :scheduled_event_study do
+      event { Event.find_by(status: 1) || create(:event, status: 1) }
+      tag { Tag.find_by(name: '学習会') || create(:tag, :study_session) }
     end
 
-    trait :sinjuku_bunka_center_event_study do
-      name { '勉強' }
-      event { Event.joins(:public_facility).find_by(public_facility: { name: '新宿文化センター'} ) || create(:event, :sinjuku_bunka_center) }
+    trait :scheduled_event_meeting do
+      event { create(:event, status: 1) }
+      tag { Tag.find_by(name: '交流会') || create(:tag, :meeting) }
+    end
+
+    trait :scheduled_event_painting do
+      event { create(:event, status: 1) }
+      tag { Tag.find_by(name: '絵画') || create(:tag, :painting) }
+    end
+
+    trait :cancel_event_study do
+      event { create(:event, status: 2) }
+      tag { Tag.find_by(name: '学習会') || create(:tag, :study_session) }
     end
   end
 end
