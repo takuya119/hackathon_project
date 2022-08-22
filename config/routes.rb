@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  # 
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   # ユーザー関連
   get 'signup', to: 'users#new' # 新規登録ページのURLを分かりやすくするためにresourcesから外している

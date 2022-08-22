@@ -1,2 +1,10 @@
 <h1>PasswordResets#new</h1>
 <p>Find me in app/views/password_resets/new.html.erb</p>
+
+<%= form_with url: password_resets_path do |f| %>
+  <div class="form-group">
+    <%= f.label :email, 'Eメール' %>
+    <%= f.text_field :email, class: 'form-control' %>
+    <%= f.submit "パスワードをリセットする", class: 'btn btn-primary mt-3' %>
+  </div>
+<% end %>
