@@ -1,6 +1,9 @@
 <div class="card border-secondary mb-3 ms-5">
   <div class="card-header border-secondary">
-    <p class="d-inline mb-0"><%= reply.name %></p>
+    <p class="d-inline mb-0">
+      <%= reply.name %>
+      <strong><%= '管理者' if reply.user && reply.user.admin? %></strong>
+    </p>
     <p class="d-inline float-end mb-0"><%= l(reply.created_at, format: :short) %></p>
   </div>
   <div class="card-body">

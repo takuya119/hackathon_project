@@ -2,6 +2,7 @@ class Facility::CommentsController < ApplicationController
   def create
     @facility = PublicFacility.find(params[:facility_id])
     @comment = @facility.facility_comments.new(comment_params)
+    @comment.user = current_user
     unless @comment.save
       render partial: 'facility/comments/comment_form', locals: { facility: @facility, comment: @comment, url: facility_comments_path(@facility) }
     end

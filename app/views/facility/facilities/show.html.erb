@@ -15,18 +15,7 @@
   </div>
 
   <div class="row mb-5">
-    <% @rooms.each do |room| %>
-      <div class="col-sm-3">
-        <div class="card text-center mx-auto" style="width: 18rem;">
-          <div class="card-body">
-            <h3 class="card-title"><%= room.name %></h3>
-            <p class="card-text">値段: <%= room.fee %></p>
-            <p class="card-text">利用人数: <%= room.capacity %></p>
-            <%= link_to 'ルーム宛コメント等', '#', class: 'btn btn-primary' %>
-          </div>
-        </div>
-      </div>
-    <% end %>
+    <%= render partial: 'room', collection: @rooms %>
   </div>
 
   <div class="row">
