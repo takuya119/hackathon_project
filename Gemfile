@@ -33,6 +33,9 @@ gem "redis", "~> 4.0"
 # ログイン関係
 gem "sorcery"
 
+# csvをインポートする
+gem "activerecord-import"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
