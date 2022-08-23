@@ -1,8 +1,25 @@
 class Event < ApplicationRecord
+  validate :start_end_check
+  validate :start_check
   belongs_to :user
   has_many :event_comments, dependent: :destroy
   has_many :event_tags, dependent: :destroy
   has_many :participants, dependent: :destroy
   has_many :tags, through: :event_tags
   has_many :participant_users, through: :participants, source: :user
+
+  # 開始日と終了日の逆転を防ぐ
+  # エラー文検討
+  def start_end_check
+    if self.start_time > self.end_time
+      errors.add(:end_time, "開始日時より前の日時は選択できません。")
+    end
+  end
+  # 開始日は3日以上前の日付で設定
+  # 何日前にするかは要検討
+  def start_check
+    if self.start_time  < Date.today + 3
+      errors.add(:start_time, "三日以内の日時は選択できません。")
+    end
+  end
 end
