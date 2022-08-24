@@ -19,6 +19,6 @@ class Facility::CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:facility_comment).permit(:name, :content)
+    params.require(:facility_comment).permit(:name, :content, :comment_type)
   end
 end

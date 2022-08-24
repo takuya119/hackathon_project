@@ -2,7 +2,7 @@
   <div class="card border-info mb-3">
     <div class="card-header border-info bg-light">
       <p class="d-inline mb-0">
-        <%= comment.name %>
+        <span class="me-1 fw-bold"><%= "[#{comment.comment_type}]" %></span><%= comment.name %>
         <strong><%= '管理者' if comment.user && comment.user.admin? %></strong>
       </p>
       <p class="d-inline float-end mb-0"><%= l(comment.created_at, format: :short) %></p>
