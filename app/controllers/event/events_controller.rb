@@ -12,7 +12,7 @@ class Event::EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @number_of_participants = Participant.where(event_id: params[:id]).count
+    @number_of_participants = @event.participants.count
   end
 
   def edit
