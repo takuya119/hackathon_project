@@ -21,7 +21,12 @@ class ImportCsv
     # 与えられたモデルに CSVデータを投入
     # activerecord-importのメソッドを使ってDBに一括でレコードを作成
     model_name.constantize.import!(list, on_duplicate_key_update: :all)
-    # 次に振る id を正常化
-    ActiveRecord::Base.connection.execute("select setval('#{table_name}_id_seq',(select max(id) from #{table_name}))")
+
+
+    # PostgreSQLを使う場合のみ処理する
+    if Rails.env.production?
+      # 次に振る id を正常化
+      ActiveRecord::Base.connection.execute("select setval('#{table_name}_id_seq',(select max(id) from #{table_name}))")
+    end
   end
 end
