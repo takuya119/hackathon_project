@@ -54,6 +54,8 @@ GEM
     activerecord (7.0.3.1)
       activemodel (= 7.0.3.1)
       activesupport (= 7.0.3.1)
+    activerecord-import (1.4.0)
+      activerecord (>= 4.2)
     activestorage (7.0.3.1)
       actionpack (= 7.0.3.1)
       activejob (= 7.0.3.1)
@@ -222,6 +224,7 @@ PLATFORMS
   arm64-darwin-21
 
 DEPENDENCIES
+  activerecord-import
   bootsnap
   cssbundling-rails
   factory_bot_rails
