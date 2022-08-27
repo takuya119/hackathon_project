@@ -21,7 +21,7 @@ class Event < ApplicationRecord
   # 開始日と終了日の逆転を防ぐ
   # エラー文検討
   def start_end_check
-    if self.start_time > self.end_time
+    if start_time > self.end_time
       errors.add(:end_time, "開始日時より前の日時は選択できません。")
     end
   end
