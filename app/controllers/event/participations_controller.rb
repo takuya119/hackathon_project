@@ -9,7 +9,7 @@ class Event::ParticipationsController < ApplicationController
 
   def destroy
     @event = Event.find(params[:event_id])
-    current_user.participants.find_by(event_id: @event.id).destroy!
+    current_user.participants.find(params[:id]).destroy!
     redirect_to @event, status: :see_other
   end
 end
