@@ -1,0 +1,7 @@
+<%= turbo_stream.append("comment-thread-#{@comment.id}",
+                        partial: 'facility/replies/reply',
+                        locals: { reply: @reply }) %>
+
+<%= turbo_stream.update @comment do %>
+  <%= render 'facility/comments/comment', comment: @comment %>
+<% end %>
