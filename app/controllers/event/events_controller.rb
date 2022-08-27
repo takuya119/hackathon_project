@@ -22,9 +22,17 @@ class Event::EventsController < ApplicationController
   end
 
   def edit
+    @event = current_user.events.find(params[:id])
   end
 
   def update
+    @event = current_user.events.find(params[:id])
+    @event.assign_attributes(event_params)
+    if @event.save
+      redirect_to event_path(@event)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
