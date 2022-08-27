@@ -18,7 +18,7 @@ class Event < ApplicationRecord
   # 開始日は3日以上前の日付で設定
   # 何日前にするかは要検討
   def start_check
-    if self.start_time  < Date.today + 3
+    if start_time  < Date.today + 3
       errors.add(:start_time, "三日以内の日時は選択できません。")
     end
   end
