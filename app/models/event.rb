@@ -6,7 +6,7 @@ class Event < ApplicationRecord
   validates :start_time, presence: true
   validates :end_time, presence: true
   validates :detail, presence: true, length: {maximum: 65535}
-  validates :capacity, presence: true, numericality: true
+  validates :capacity, presence: true, numericality: {in: 2...100, only_integer: true}
   validates :status, presence: true
 
   belongs_to :user
