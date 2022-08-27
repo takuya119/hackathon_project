@@ -14,7 +14,7 @@ class Event::EventsController < ApplicationController
     if @event.save
       redirect_to events_path
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
