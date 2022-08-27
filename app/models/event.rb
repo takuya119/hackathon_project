@@ -1,6 +1,14 @@
 class Event < ApplicationRecord
   validate :start_end_check
   validate :start_check
+  # lengthについては仮、要検討
+  validates :name, presence: true, length: { maximum: 255 }
+  validates :start_time, presence: true
+  validates :end_time, presence: true
+  validates :detail, presence: true, length: {maximum: 65535}
+  validates :capacity, presence: true, numericality: true
+  validates :status, presence: true
+
   belongs_to :user
   has_many :event_comments, dependent: :destroy
   has_many :event_tags, dependent: :destroy
