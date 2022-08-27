@@ -30,6 +30,9 @@ gem "cssbundling-rails"
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
 
+# JSに変数を渡す
+gem 'gon'
+
 # ログイン関係
 gem "sorcery"
 
