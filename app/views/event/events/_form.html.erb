@@ -21,7 +21,7 @@
   </div>
   <div class="form-group">
     <%= f.label :status %>
-    <%= f.select :status, Event.statuses.keys, class: 'form-control' %>
+    <%= f.select :status, Event.statuses.except(:"中止").keys, class: 'form-control' %>
   </div>
   <%= f.submit class: 'btn btn-primary' %>
 <% end %>
