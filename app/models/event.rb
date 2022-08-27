@@ -8,6 +8,8 @@ class Event < ApplicationRecord
   has_many :tags, through: :event_tags
   has_many :participant_users, through: :participants, source: :user
 
+  enum status: { "施設予約": 0, "施設予約済": 1, "中止": 3 }
+
   # 開始日と終了日の逆転を防ぐ
   # エラー文検討
   def start_end_check
