@@ -72,4 +72,7 @@ group :development do
   # gem "spring"
   # パスワードリセット関係
   gem 'letter_opener_web', '~> 2.0'
+
+  # スクレイピング
+  gem 'nokogiri'
 end

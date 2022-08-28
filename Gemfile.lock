@@ -230,6 +230,7 @@ DEPENDENCIES
   factory_bot_rails
   jsbundling-rails
   letter_opener_web (~> 2.0)
+  nokogiri
   pry-byebug
   puma (~> 5.0)
   rails (~> 7.0.3)
