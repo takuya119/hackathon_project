@@ -60,8 +60,6 @@ class GetRoomData
     file = URI.open(base_url)
     doc = Nokogiri::HTML.parse(file)
 
-    binding.pry
-
     spo_data_list = doc.css("div.edit a").map do |a|
       name = a.text
       data_hash = { name: , capacity: nil, description: "仮", public_facility_id: id }
