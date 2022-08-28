@@ -1,0 +1,9 @@
+<% if participation %>
+  <%= link_to 'イベントへの参加を取り消す', event_participation_path(event, participation), class: 'mt-3 btn btn-primary', data: {turbo_method: :delete} %>
+<% else %>
+  <% if @number_of_participants < event.capacity %>
+    <%= link_to 'イベントに参加する', event_participations_path(event), class: 'mt-3 btn btn-primary', data: {turbo_method: :post} %>
+  <% else %>
+    <p>募集は終了しました</p>
+  <% end %>
+<% end %>
