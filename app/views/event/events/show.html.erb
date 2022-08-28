@@ -18,3 +18,9 @@
 <%# コメント＆Q&A機能は、施設のコメント機能を参考にしたく、追って相談させてください %>
 
 <%= render 'event/events/participations/button', event: @event, participation: @participation %>
+
+<!-- コメント -->
+      <%= turbo_frame_tag 'comments' do %>
+        <%= render partial: 'event/comments/comment_thread', collection: @comments, as: 'comment' %>
+      <% end %>
+      <%= render 'event/comments/comment_form', { event: @event, comment: @comment, url: event_comments_path(@event) } %>
