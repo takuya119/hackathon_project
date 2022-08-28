@@ -7,7 +7,9 @@
       <%= simple_format comment.content, class: 'mb-0 card-text fs-5' %>
     </div>
     <div class="card-footer bg-transparent border-info">
-      <%= link_to '返信する', new_comment_evt_reply_path(comment), class: 'text-end float-end mt-2' %>
+      <% if current_user == @event.user %>
+        <%= link_to '返信する', new_comment_evt_reply_path(comment), class: 'text-end float-end mt-2' %>
+      <% end %>
     </div>
   </div>
 <% end %>
