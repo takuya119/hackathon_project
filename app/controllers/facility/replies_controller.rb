@@ -7,7 +7,7 @@ class Facility::RepliesController < ApplicationController
   def create
     @comment = FacilityComment.find(params[:comment_id])
     @reply = @comment.facility_replies.new(reply_params)
-    @reply.user = User.find(current_user.id) if current_user
+    @reply.user = User.find(current_user.id) if logged_in?
     unless @reply.save
       render partial: 'facility/replies/reply_form', locals: { comment: @comment, reply: @reply }
     end
