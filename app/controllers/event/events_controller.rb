@@ -1,4 +1,6 @@
 class Event::EventsController < ApplicationController
+  before_action :set_event, only: %i[edit update]
+
   def index
     @q = Event.ransack(params[:q])
     # ページネーション検討
@@ -23,12 +25,9 @@ class Event::EventsController < ApplicationController
     @number_of_participants = @event.participants.count
   end
 
-  def edit
-    @event = current_user.events.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @event = current_user.events.find(params[:id])
     if @event.update(event_params)
       redirect_to event_path(@event)
     else
@@ -46,5 +45,9 @@ class Event::EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:name, :start_time, :end_time, :detail, :capacity, :status)
+  end
+
+  def set_event
+    @event = current_user.events.find(params[:id])
   end
 end
