@@ -29,8 +29,7 @@ class Event::EventsController < ApplicationController
 
   def update
     @event = current_user.events.find(params[:id])
-    @event.assign_attributes(event_params)
-    if @event.save
+    if @event.update(event_params)
       redirect_to event_path(@event)
     else
       render :edit, status: :unprocessable_entity
