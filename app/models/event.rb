@@ -33,4 +33,13 @@ class Event < ApplicationRecord
       errors.add(:start_time, "三日以内の日時は選択できません。")
     end
   end
+
+  # イベント詳細画面
+  def number_of_participants
+    self.participants.count
+  end
+
+  def less_than_capacity?(event)
+    self.participants.count < self.capacity
+  end
 end
