@@ -36,6 +36,9 @@ gem "sorcery"
 # 検索機能
 gem "ransack"
 
+# csvをインポートする
+gem "activerecord-import"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
@@ -72,4 +75,7 @@ group :development do
   # gem "spring"
   # パスワードリセット関係
   gem 'letter_opener_web', '~> 2.0'
+
+  # スクレイピング
+  gem 'nokogiri'
 end

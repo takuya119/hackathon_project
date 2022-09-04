@@ -1,0 +1,4 @@
+<%= turbo_frame_tag "comment-thread-#{comment.id}" do %>
+  <%= render 'facility/comments/comment', comment: comment %>
+  <%= render partial: 'facility/replies/reply', collection: comment.facility_replies, as: 'reply' %>
+<% end %>
