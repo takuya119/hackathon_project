@@ -1,0 +1,4 @@
+<%= turbo_frame_tag "comment-thread-#{comment.id}" do %>
+  <%= render 'event/comments/comment', comment: comment %>
+  <%= render partial: 'event/replies/reply', collection: comment.event_replies, as: 'reply' %>
+<% end %>

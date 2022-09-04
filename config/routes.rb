@@ -3,8 +3,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  # 
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   # ユーザー関連
   get 'signup', to: 'users#new' # 新規登録ページのURLを分かりやすくするためにresourcesから外している
@@ -35,11 +33,11 @@ Rails.application.routes.draw do
     resources :events do
       get 'mine', on: :collection
       resources :participations, only: %i[create destroy]
-      resources :comments, only: %i[create destroy]
+      resources :comments, only: %i[create show destroy]
     end
     scope 'evt' do
       resources :comments, only: %i[] do
-        resources :replies, only: %i[create destroy], as: 'evt_replies'
+        resources :replies, only: %i[new create destroy], as: 'evt_replies'
       end
     end
   end

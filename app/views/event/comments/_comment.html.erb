@@ -1,0 +1,15 @@
+<%= turbo_frame_tag comment do %>
+  <div class="card border-info mb-3">
+    <div class="card-header border-info bg-light">
+      <p class="d-inline float-end mb-0"><%= l(comment.created_at, format: :short) %></p>
+    </div>
+    <div class="card-body">
+      <%= simple_format comment.content, class: 'mb-0 card-text fs-5' %>
+    </div>
+    <div class="card-footer bg-transparent border-info">
+      <% if current_user == @event.user %>
+        <%= link_to '返信する', new_comment_evt_reply_path(comment), class: 'text-end float-end mt-2' %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

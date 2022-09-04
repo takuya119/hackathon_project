@@ -21,6 +21,10 @@ class Event::EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @participation = current_user.participants.find_by(event_id: @event.id)
+
+    @number_of_participants = @event.participants.count
+    @comments = @event.event_comments.includes(:event_replies) # orderを検討
+    @comment = EventComment.new
   end
 
   def edit

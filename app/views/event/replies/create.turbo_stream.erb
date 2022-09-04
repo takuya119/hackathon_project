@@ -1,0 +1,4 @@
+<%= turbo_stream.append("comment-thread-#{@comment.id}", partial: 'event/replies/reply', locals: { reply: @reply }) %>
+<%= turbo_stream.update @comment do %>
+  <%= render 'event/comments/comment', comment: @comment %>
+<% end %>

@@ -1,0 +1,2 @@
+<%= turbo_stream.append('comments', partial: 'event/comments/comment_thread', locals: { comment: @comment }) %>
+<%= turbo_stream.replace 'comment_form', partial: 'event/comments/comment_form', locals: { facility: @event, comment: EventComment.new, url: event_comments_path(@event) } %>
