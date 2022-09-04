@@ -1,2 +1,32 @@
-<h1>Facility::Facilities#show</h1>
-<p>Find me in app/views/facility/facilities/show.html.erb</p>
+<div class="container mb-5">
+  <div class="card text-center m-4">
+    <div class="card-body">
+      <h2 class="card-title"><%= @facility.name %></h2>
+      <p class="card-text"><%= @facility.address %></p>
+      <%= link_to '予約ページ', @facility.reserve_url, class: 'btn btn-primary' %>
+    </div>
+    <div class="card-footer text-muted">
+      <% if logged_in? %>
+        <%= render 'facility/bookmarks/bookmark_button', facility: @facility %>
+      <% else %>
+        <p class="mb-0">ユーザー登録するとブックマークが可能です</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <%= render partial: 'room', collection: @rooms %>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8 offset-sm-2">
+      <h1 class="mb-3">コメント</h1> <!-- ログイン無しでコメント可 -->
+      <%= turbo_frame_tag 'comments' do %>
+        <%= render partial: 'facility/comments/comment_thread', collection: @comments, as: 'comment' %>
+      <% end %>
+      <%= render 'facility/comments/comment_form', { facility: @facility,
+                              comment: @comment,
+                              url: facility_comments_path(@facility) } %>
+    </div>
+  </div>
+</div>

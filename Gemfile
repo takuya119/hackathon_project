@@ -33,6 +33,9 @@ gem "redis", "~> 4.0"
 # ログイン関係
 gem "sorcery"
 
+# 検索機能
+gem "ransack"
+
 # csvをインポートする
 gem "activerecord-import"
 

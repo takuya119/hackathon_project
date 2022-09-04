@@ -1,0 +1,17 @@
+<%= turbo_frame_tag 'comment_form' do %>
+  <%= form_with model: comment, url: url do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="form-group">
+      <%= f.select :comment_type, FacilityComment.comment_types.keys %>
+    </div>
+    <div class="form-group">
+      <%= f.label :name, '名前' %>
+      <%= f.text_field :name, class: "form-control", placeholder: '空欄の場合、匿名のコメントになります' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :content, 'コメント' %>
+      <%= f.text_area :content, class: "form-control mb-3" %>
+    </div>
+    <%= f.submit '送信', class: "btn btn-primary float-end" %>
+  <% end %>
+<% end %>

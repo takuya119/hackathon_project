@@ -13,4 +13,18 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
   validates :reset_password_token, uniqueness: true, allow_nil: true
+
+  enum role: { general: 0, admin: 1 } # 変更する可能性あり
+
+  def bookmark(public_facility)
+    bookmark_facilities << public_facility
+  end
+
+  def unbookmark(public_facility)
+    bookmark_facilities.destroy(public_facility)
+  end
+
+  def bookmark?(public_facility)
+    bookmark_facilities.include?(public_facility)
+  end
 end

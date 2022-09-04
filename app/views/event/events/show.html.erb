@@ -1,2 +1,20 @@
 <h1>Event::Events#show</h1>
 <p>Find me in app/views/event/events/show.html.erb</p>
+
+<div> 
+<%# statusのenum？は相談させてください。%>
+
+  <h1><%= @event.name %></h1>
+  <p><%= @event.start_time %><span>〜</span><%= @event.end_time %></p> 
+  <p><%= "参加予定人数：#{@event.number_of_participants}名/募集人数：#{@event.capacity}名" %></p>
+  <p><%= @event.status %></p>
+
+</div>
+<div>
+  <p>イベント詳細：</p>
+  <%= @event.detail %>
+</div>
+
+<%# コメント＆Q&A機能は、施設のコメント機能を参考にしたく、追って相談させてください %>
+
+<%= render 'event/events/participations/button', event: @event, participation: @participation %>
