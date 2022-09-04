@@ -7,7 +7,7 @@ class Event::RepliesController < ApplicationController
   def create
     @comment = EventComment.find(params[:comment_id])
     @reply = @comment.event_replies.new(reply_params)
-    @reply.user = current_user
+    @reply.user = User.find(current_user.id) if logged_in?
     unless @reply.save
       render partial: 'event/replies/reply_form', locals: { comment: @comment, reply: @reply }
     end

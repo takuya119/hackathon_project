@@ -2,7 +2,7 @@ class Event::CommentsController < ApplicationController
   def create
     @event = Event.find(params[:event_id])
     @comment = @event.event_comments.new(comment_params)
-    @comment.user = current_user
+    @comment.user = User.find(current_user.id) if logged_in?
     unless @comment.save
       render partial: 'event/comments/comment_form', locals: { event: @event, comment: @comment, url: event_comments_path(@event) }
     end
