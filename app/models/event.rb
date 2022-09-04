@@ -35,11 +35,11 @@ class Event < ApplicationRecord
   end
 
   # イベント詳細画面
-  def number_of_participants
-    self.participants.count
+  def participants_count
+    participant_users.count
   end
 
-  def less_than_capacity?(event)
-    self.participants.count < self.capacity
+  def recruitment?
+    participant_users.count < capacity
   end
 end
