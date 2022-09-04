@@ -39,4 +39,8 @@ class User < ApplicationRecord
   def participation?(event)
     participant_events.include?(event)
   end
+
+  def own_event?(event)
+    id == event.user_id
+  end
 end
