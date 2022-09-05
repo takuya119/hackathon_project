@@ -52,7 +52,7 @@ function initMap() {
       fillColor: '#f0ffff',
       strokeColor: '#87cefa'
     });
-  }
+  };
 
   let circle = newCircle();
 
@@ -78,19 +78,16 @@ tagForm.addEventListener("input", () => {
   }
 
   regValue = new RegExp(tagForm.value);
-  matchTag = roomTag.filter((r) => r.match(regValue))
+  matchTags = roomTag.filter((r) => r.match(regValue))
 
-  for (let i = 0; i < matchTag.length; i++) {
+  matchTags.forEach(tag => {
     li = document.createElement('li')
-    li.innerHTML = matchTag[i]
-    li.className = 'input-value-li d-inline me-2';
+    li.innerHTML = tag
+    li.className = 'd-inline me-2';
     tagList.appendChild(li);
-  }
 
-  addFuncLi = document.getElementsByClassName('input-value-li');
-  for (let i = 0; i < addFuncLi.length; i++) {
-    addFuncLi[i].addEventListener("click", () => {
-      tagForm.value = addFuncLi[i].textContent
+    li.addEventListener("click", () => {
+      tagForm.value = tag
     })
-  }
+  });
 });
