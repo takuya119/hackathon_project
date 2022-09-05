@@ -1,5 +1,4 @@
 const center = { lat: 35.67337556092948, lng: 139.81827882218855 }; // 江東区の中心の緯度経度
-const select = document.getElementById('js-radius-select');
 const facilities = gon.searchInfo['facilities'];
 
 function initMap() {
@@ -38,10 +37,13 @@ function initMap() {
     return marker
   });
 
+  const select = document.getElementById('js-radius-select');
+  let radius = parseInt(select.value)
+
   circle = new google.maps.Circle({
-    map: map,
-    center: center,
-    radius: 3000,
+    map,
+    center,
+    radius,
     clickable: false,
     fillColor: '#f0ffff',
     strokeColor: '#87cefa'
@@ -50,11 +52,10 @@ function initMap() {
   select.onchange = () => {
     circle.setMap(null);
 
-    radius = parseInt(select.value)
     circle = new google.maps.Circle({
-      map: map,
-      center: center,
-      radius: radius,
+      map,
+      center,
+      radius: parseInt(select.value),
       clickable: false,
       fillColor: '#f0ffff',
       strokeColor: '#87cefa'
