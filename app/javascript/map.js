@@ -38,28 +38,27 @@ function initMap() {
   });
 
   const select = document.getElementById('js-radius-select');
-  let radius = parseInt(select.value)
 
-  let circle = new google.maps.Circle({
-    map,
-    center,
-    radius,
-    clickable: false,
-    fillColor: '#f0ffff',
-    strokeColor: '#87cefa'
-  });
+  let getRadius = () => {
+    return parseInt(select.value)
+  };
 
-  select.onchange = () => {
-    circle.setMap(null);
-
-    circle = new google.maps.Circle({
+  let newCircle = () => {
+    return new google.maps.Circle({
       map,
       center,
-      radius: parseInt(select.value),
+      radius: getRadius(),
       clickable: false,
       fillColor: '#f0ffff',
       strokeColor: '#87cefa'
     });
+  }
+
+  let circle = newCircle();
+
+  select.onchange = () => {
+    circle.setMap(null);
+    circle = newCircle();
   }
 }
 
