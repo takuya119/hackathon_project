@@ -1,7 +1,7 @@
 const center = { lat: 35.67337556092948, lng: 139.81827882218855 }; // 江東区の中心の緯度経度
 const facilities = gon.searchInfo['facilities'];
 
-function initMap() {
+window.initMap = () => {
   const map = new google.maps.Map(document.getElementById('map'), {
     center,
     zoom: 13,
@@ -61,8 +61,6 @@ function initMap() {
     circle = newCircle();
   }
 }
-
-window.initMap = initMap;
 
 roomTag = gon.searchInfo['room_tags']
 tagForm = document.getElementById('q_rooms_room_tags_tag_name_matches_all')
