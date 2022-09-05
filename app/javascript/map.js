@@ -40,7 +40,7 @@ function initMap() {
   const select = document.getElementById('js-radius-select');
   let radius = parseInt(select.value)
 
-  circle = new google.maps.Circle({
+  let circle = new google.maps.Circle({
     map,
     center,
     radius,
