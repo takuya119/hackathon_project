@@ -3,7 +3,7 @@ const facilities = gon.searchInfo['facilities'];
 
 function initMap() {
   const map = new google.maps.Map(document.getElementById('map'), {
-    center: center,
+    center,
     zoom: 13,
     mapTypeControl: false,
     streetViewControl: false,
@@ -11,7 +11,7 @@ function initMap() {
   });
 
   new google.maps.Marker({
-    map: map,
+    map,
     position: center,
   });
 
