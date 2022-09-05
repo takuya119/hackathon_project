@@ -1,8 +1,6 @@
 const center = { lat: 35.67337556092948, lng: 139.81827882218855 }; // 江東区の中心の緯度経度
 const select = document.getElementById('js-radius-select');
 const facilities = gon.searchInfo['facilities'];
-let markers = [];
-let infoWindows = [];
 
 function initMap() {
   const map = new google.maps.Map(document.getElementById('map'), {
@@ -18,32 +16,27 @@ function initMap() {
     position: center,
   });
 
-  for (let i = 0; i < facilities.length; i++) {
-    const coordinatesMarker = new google.maps.LatLng({ lat: parseFloat(facilities[i]['latitude']), lng: parseFloat(facilities[i]['longitude']) });
-    markers[i] = new google.maps.Marker({
+  let infoWindow;
+  let markers = facilities.map((facility) => {
+    const coordinatesMarker = new google.maps.LatLng({ lat: parseFloat(facility['latitude']), lng: parseFloat(facility['longitude']) });
+    const marker = new google.maps.Marker({
       position: coordinatesMarker,
-      map: map,
+      map,
       icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
     });
 
-    infoWindows[i] = new google.maps.InfoWindow({
-      content: `${facilities[i].name}<br><a href="/facilities/${facilities[i].id}">詳細ページ</a>`
-    });
-
-    markerEvent(i);
-  }
-
-  function markerEvent(i) {
-    markers[i].addListener('click', () => {
-      infoWindows[i].open(map, markers[i]);
-      for (let n = 0; n < facilities.length; n++) {
-        if (n === i) {
-          continue;
-        }
-        infoWindows[n].close();
+    marker.addListener('click', () => {
+      if (infoWindow !== undefined) {
+        infoWindow.close();
       }
+      infoWindow = new google.maps.InfoWindow({
+        content: `${facility.name}<br><a href="/facilities/${facility.id}">詳細ページ</a>`
+      });
+      infoWindow.open(map, marker);
     });
-  }
+
+    return marker
+  });
 
   circle = new google.maps.Circle({
     map: map,
