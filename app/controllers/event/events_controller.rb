@@ -1,4 +1,6 @@
 class Event::EventsController < ApplicationController
+  before_action :set_event, only: %i[edit update]
+
   def index
     @q = Event.ransack(params[:q])
     # ページネーション検討
@@ -20,21 +22,14 @@ class Event::EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @participation = current_user.participants.find_by(event_id: @event.id)
-
-    @number_of_participants = @event.participants.count
     @comments = @event.event_comments.includes(:event_replies) # orderを検討
     @comment = EventComment.new
   end
 
-  def edit
-    @event = current_user.events.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @event = current_user.events.find(params[:id])
-    @event.assign_attributes(event_params)
-    if @event.save
+    if @event.update(event_params)
       redirect_to event_path(@event)
     else
       render :edit, status: :unprocessable_entity
@@ -48,6 +43,10 @@ class Event::EventsController < ApplicationController
   end
 
   private
+
+  def set_event
+    @event = current_user.events.find(params[:id])
+  end
 
   def event_params
     params.require(:event).permit(:name, :start_time, :end_time, :detail, :capacity, :status)

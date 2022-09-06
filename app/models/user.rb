@@ -27,4 +27,20 @@ class User < ApplicationRecord
   def bookmark?(public_facility)
     bookmark_facilities.include?(public_facility)
   end
+
+  def participation(event)
+    participant_events << event
+  end
+
+  def unparticipation(event)
+    participant_events.destroy(event)
+  end
+
+  def participation?(event)
+    participant_events.include?(event)
+  end
+
+  def own_event?(event)
+    id == event.user_id
+  end
 end

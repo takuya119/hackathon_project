@@ -1,15 +1,20 @@
 class Event::ParticipationsController < ApplicationController
   before_action :require_login
+  before_action :set_event, only: %i[create destroy]
 
   def create
-    @event = Event.find(params[:event_id])
-    current_user.participants.create!(event: @event)
+    current_user.participation(@event)
     redirect_to event_path(@event)
   end
 
   def destroy
-    @event = Event.find(params[:event_id])
-    current_user.participants.find(params[:id]).destroy!
+    current_user.unparticipation(@event)
     redirect_to @event, status: :see_other
+  end
+
+  private
+
+  def set_event
+    @event = Event.find(params[:event_id])
   end
 end
