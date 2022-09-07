@@ -1,7 +1,7 @@
 class Facility::FacilitiesController < ApplicationController
   def index
     @q = PublicFacility.ransack(params[:q])
-    @facilities = @q.result
+    @facilities = @q.result.distinct
     room_tags = Tag.joins(:room_tags).distinct.map{|t| t.name}
 
     gon.searchInfo = {facilities: @facilities, room_tags: room_tags}

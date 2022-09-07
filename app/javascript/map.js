@@ -1,3 +1,26 @@
+const haversine_distance = (center, facility) => {
+  const { latitude: facLat, longitude: facLng } = facility;
+  R = 6371.071;
+  const rlat1 = center.lat * (Math.PI / 180);
+  const rlat2 = parseFloat(facLat) * (Math.PI / 180);
+  const difflat = rlat2 - rlat1;
+  const difflon = (parseFloat(facLng) - center.lng) * (Math.PI / 180);
+
+  const d =
+    2 *
+    R *
+    Math.asin(
+      Math.sqrt(
+        Math.sin(difflat / 2) * Math.sin(difflat / 2) +
+        Math.cos(rlat1) *
+        Math.cos(rlat2) *
+        Math.sin(difflon / 2) *
+        Math.sin(difflon / 2)
+      )
+    );
+  return d;
+};
+
 const center = { lat: 35.67337556092948, lng: 139.81827882218855 }; // 江東区の中心の緯度経度
 const facilities = gon.searchInfo['facilities'];
 
@@ -15,9 +38,18 @@ window.initMap = () => {
     position: center,
   });
 
+  const select = document.getElementById('js-radius-select');
+  const filteredFacilities = facilities.filter(
+    (facility) => haversine_distance(center, facility) < select.value / 1000
+  );
+
   let infoWindow;
-  let markers = facilities.map((facility) => {
-    const coordinatesMarker = new google.maps.LatLng({ lat: parseFloat(facility['latitude']), lng: parseFloat(facility['longitude']) });
+  const setMarker = (facility) => {
+    const coordinatesMarker = new google.maps.LatLng({
+      lat: parseFloat(facility.latitude),
+      lng: parseFloat(facility.longitude)
+    });
+
     const marker = new google.maps.Marker({
       position: coordinatesMarker,
       map,
@@ -25,7 +57,7 @@ window.initMap = () => {
     });
 
     marker.addListener('click', () => {
-      if (infoWindow !== undefined) {
+      if (infoWindow) {
         infoWindow.close();
       }
       infoWindow = new google.maps.InfoWindow({
@@ -35,15 +67,15 @@ window.initMap = () => {
     });
 
     return marker
-  });
+  };
 
-  const select = document.getElementById('js-radius-select');
+  let markers = filteredFacilities.map((facility) => setMarker(facility));
 
-  let getRadius = () => {
+  const getRadius = () => {
     return parseInt(select.value)
   };
 
-  let newCircle = () => {
+  const newCircle = () => {
     return new google.maps.Circle({
       map,
       center,
@@ -59,6 +91,13 @@ window.initMap = () => {
   select.onchange = () => {
     circle.setMap(null);
     circle = newCircle();
+
+    markers.map((marker) => marker.setMap(null));
+    const newFilteredFac = facilities.filter(
+      (facility) => haversine_distance(center, facility) < select.value / 1000
+    );
+
+    markers = newFilteredFac.map((facility) => setMarker(facility));
   }
 }
 
