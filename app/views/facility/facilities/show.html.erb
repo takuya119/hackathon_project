@@ -14,19 +14,94 @@
     </div>
   </div>
 
-  <div class="row mb-5">
-    <%= render partial: 'room', collection: @rooms %>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-8 offset-sm-2">
-      <h1 class="mb-3">コメント</h1> <!-- ログイン無しでコメント可 -->
-      <%= turbo_frame_tag 'comments' do %>
-        <%= render partial: 'facility/comments/comment_thread', collection: @comments, as: 'comment' %>
+  <ul class="nav nav-tabs mb-3 justify-content-center" id="pills-tab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link active"
+        id="pills-rooms-tab"
+        data-bs-toggle="pill"
+        data-bs-target="#pills-rooms"
+        type="button"
+        role="tab"
+        aria-controls="pills-rooms"
+        aria-selected="false"
+      >
+        ルーム一覧
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="pills-comments-tab"
+        data-bs-toggle="pill"
+        data-bs-target="#pills-comments"
+        type="button"
+        role="tab"
+        aria-controls="pills-comments"
+        aria-selected="false"
+      >
+        コメント
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="pills-questions-tab"
+        data-bs-toggle="pill"
+        data-bs-target="#pills-questions"
+        type="button"
+        role="tab"
+        aria-controls="pills-questions"
+        aria-selected="false"
+      >
+        Q&A
+      </button>
+    </li>
+  </ul>
+  <div class="tab-content" id="pills-tabContent">
+    <div
+      class="tab-pane fade show active"
+      id="pills-rooms"
+      role="tabpanel"
+      aria-labelledby="pills-rooms-tab"
+    >
+      <div class="row mb-5">
+        <%= render partial: 'room', collection: @rooms %>
+      </div>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="pills-comments"
+      role="tabpanel"
+      aria-labelledby="pills-comments-tab"
+    >
+      <div class="row">
+        <%= turbo_frame_tag "normal_comments" do %>
+          <%= render partial: 'facility/comments/comment_thread', collection: @comments.normal, as: 'comment' %>
+        <% end %>
+        <div class="col-sm-8 offset-sm-2">
+          <%= render 'facility/comments/comment_form', { facility: @facility,
+                                  comment: @comment,
+                                  comment_type: "normal",
+                                  url: facility_comments_path(@facility) } %>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="pills-questions"
+      role="tabpanel"
+      aria-labelledby="pills-questions-tab"
+    >
+      <%= turbo_frame_tag 'question_comments' do %>
+        <%= render partial: 'facility/comments/comment_thread', collection: @comments.question, as: 'comment' %>
       <% end %>
-      <%= render 'facility/comments/comment_form', { facility: @facility,
-                              comment: @comment,
-                              url: facility_comments_path(@facility) } %>
+      <div class="col-sm-8 offset-sm-2">
+          <%= render 'facility/comments/comment_form', { facility: @facility,
+                                  comment: @comment,
+                                  comment_type: "question",
+                                  url: facility_comments_path(@facility) } %>
+      </div>
     </div>
   </div>
 </div>

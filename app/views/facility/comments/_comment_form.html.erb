@@ -1,9 +1,7 @@
-<%= turbo_frame_tag 'comment_form' do %>
+<%= turbo_frame_tag "#{comment_type}_form" do %>
   <%= form_with model: comment, url: url do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-    <div class="form-group">
-      <%= f.select :comment_type, FacilityComment.comment_types.keys %>
-    </div>
+    <%= f.hidden_field :comment_type, value: comment_type %>
     <div class="form-group">
       <%= f.label :name, '名前' %>
       <%= f.text_field :name, class: "form-control", placeholder: '空欄の場合、匿名のコメントになります' %>
