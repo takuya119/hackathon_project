@@ -1,5 +1,6 @@
-<div class="container m-5">
-  <div class="card">
+<div class="container mt-3 mb-5 mx-auto">
+  <%= link_to 'イベント一覧へ', events_path %>
+    <div class="card">
       <div>
       <% if @event.recruitment? %>
         <p class='btn btn-outline-primary mt-3 ms-3 disabled'>募集中</p>
