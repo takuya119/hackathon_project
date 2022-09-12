@@ -13,12 +13,16 @@
           <td>１７：００</td>
         </tr>
         <tr class="table-light">
+          <td>開催場所</td>
+          <td>深川庭球場</td>
+        </tr>
+        <tr class="table-light">
           <td>募集人数</td>
           <td>１０人</td>
         </tr>
       </table>
       <p class="card-text m-0 text-start ms-1">
-        テニス　初心者歓迎　〇〇大学
+        テニス　初心者
       </p>
       <h5 class='text-start m-3'>詳細</h5>
       <p class='text-start m-3'>
@@ -26,9 +30,6 @@
         経験年数１〜２年程度のメンバーが１０人程度参加予定です。<br><br>
         ・ラケット等の道具は持参<br>
         ・参加費　一人あたり３００円<br>
-        ・開催場所　〇〇庭球場<br><br>
-        こちらの条件で可能なサークル等ございましたら<br>ぜひ気軽にご参加ください！<br>
-        連絡先　hogehoge@example.com
       </p>
       <% if current_user&.own_event?(@event) %>
         <%= link_to  "編集", edit_event_path(@event), class: 'mt-3 btn btn-success' %>
