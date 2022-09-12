@@ -1,14 +1,51 @@
-<div class="d-flex">
-  <div style="height: 82vh; width: 55%; margin: 1rem;">
-    <div class="text-end me-1">
-      <%= select_tag 'js-radius-select', options_for_select({'1km': 1000, '2km': 2000, '3km': 3000, '4km': 4000, '5km': 5000}, 3000) %>
-    </div>
-    <div id="map" style="height: 95%; border: ridge 16px #cccccc;"></div>
-  </div>
-  <div class="m-auto" style="width: 40%;">
-    <%= search_form_for @q, url: root_path do |f| %>
-      <div class="row">
-        <div class="form-inline align-items-center mx-auto">
+<style>
+  #map {
+    height: 55vh;
+    border: ridge 12px #cccccc;
+  }
+
+  @media screen and (min-width: 544px) {
+    #map {
+      height: 75vh;
+    }
+
+    .pagination-width {
+      width: 60% !important;
+    }
+  }
+
+  .border-text {
+    color: #FFF;
+    text-shadow: 1px 1px 0 #555c62, -1px -1px 0 #555c62,
+                -1px 1px 0 #555c62, 1px -1px 0 #555c62,
+                0px 1px 0 #555c62,  0 -1px 0 #555c62,
+                -1px 0 0 #555c62, 1px 0 0 #555c62;
+  }
+
+  .pagination-width {
+    width: 100% !important;
+  }
+</style>
+
+<div class="text-end mt-3 mx-4">
+  <button type="button" class="btn btn-link p-0 me-3" data-bs-toggle="modal" data-bs-target="#searchModal">
+    条件指定検索
+  </button>
+
+  <%= select_tag 'js-radius-select', options_for_select({'1km': 1000, '2km': 2000, '3km': 3000, '4km': 4000, '5km': 5000}, 0), include_blank: true, class: 'px-2' %>
+  <div id="map"></div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-info bg-gradient">
+        <h4 class="modal-title border-text" id="searchModalLabel">条件指定検索</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <%= search_form_for @q, url: root_path do |f| %>
+        <div class="modal-body">
           <div class="col-auto">
             <%= f.label :municipality_name_eq, '地域', class: 'd-block' %>
             <%= f.select :municipality_name_eq, Municipality.all.map { |municipality| municipality.name }, include_blank: true, placeholder: '検索', class: 'form-control'%>
@@ -16,40 +53,48 @@
           <div class="col-auto">
             <%= f.label :rooms_room_tags_tag_name_matches_all, 'タグ' %>
             <%= f.search_field :rooms_room_tags_tag_name_matches_all, placeholder: '検索', class: 'form-control'%>
-            <ul id="js-tag-list" class="list-unstyled">
-            </ul>
+            <ul id="js-tag-list" class="list-unstyled"></ul>
           </div>
           <div class="col-auto">
             <%= f.label :rooms_capacity_gteq, '人数' %>
             <%= f.number_field :rooms_capacity_gteq, class: 'form-control'%>
           </div>
-          <div class="col-auto">
-            <%= f.submit '検索', class: 'btn btn-primary float-end mt-3' %>
-          </div>
         </div>
-      </div>
-    <% end %>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Close</button>
+          <%= f.submit '検索', class: 'btn btn-primary px-4' %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
 
-<div class="container mb-5">
-  <% @facilities.each do |facility| %>
-    <div class="card text-center m-4">
-      <div class="card-body">
-        <h2 class="card-title"><%= facility.name %></h2>
-        <p class="card-text"><%= facility.address %></p>
-        <%= link_to '予約ページ', facility.reserve_url, class: 'btn btn-primary' %>
-        <%= link_to '詳細ページ', facility_path(facility), class: 'btn btn-primary' %>
-      </div>
-      <div class="card-footer text-muted">
-        <% if logged_in? %>
-          <%= render 'facility/bookmarks/bookmark_button', facility: facility %>
-        <% else %>
-          <p class="mb-0">ユーザー登録するとブックマークが可能です</p>
-        <% end %>
-      </div>
+<div class="container mb-5" id="js-swiper-container">
+  <div class="swiper mySwiper mt-3 col-sm-7">
+    <div class="swiper-wrapper">
+      <% @facilities.each do |facility| %>
+        <div class="card text-center swiper-slide" id="js-facility-<%= facility.id %>">
+          <div class="card-body">
+            <h2 class="card-title"><%= facility.name %></h2>
+            <p class="card-text"><%= facility.address %></p>
+            <%= link_to '予約ページ', facility.reserve_url, class: 'btn btn-primary' %>
+            <%= link_to '詳細ページ', facility_path(facility), class: 'btn btn-primary' %>
+          </div>
+          <div class="card-footer text-muted">
+            <% if logged_in? %>
+              <%= render 'facility/bookmarks/bookmark_button', facility: facility %>
+            <% else %>
+              <p class="mb-0">ユーザー登録するとブックマークが可能です</p>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination pagination-width"></div>
+  </div>
+
 </div>
 
 <%= include_gon %>
