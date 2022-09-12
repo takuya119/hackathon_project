@@ -1,27 +1,41 @@
-<%= form_with model: event, local: true do |f| %>
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :start_time %>
-    <%= f.datetime_local_field :start_time, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :end_time %>
-    <%= f.datetime_local_field :end_time, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :detail %>
-    <%= f.text_area :detail, class: 'form-control', rows: 10 %>
-  </div>
-  <div class="form-group">
-    <%= f.label :capacity %>
-    <%= f.number_field :capacity,  in: 2...101, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :status %>
-    <%= f.select :status, Event.statuses.except(:"中止").keys, class: 'form-control' %>
-  </div>
-  <%= f.submit class: 'btn btn-primary' %>
-<% end %>
+<div class="m-auto fs-6" style="width: 90%;">
+  <%= form_with model: event, local: true do |f| %>
+    <div class="row">
+      <div class="form-inline align-items-center mx-auto">
+        <div class="col-auto">
+          <%= f.label :name, "タイトル" %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+        <%# 一旦レイアウトの調整 %>
+        <div class="col-auto">
+          <%= f.label "場所" %>
+          <%= f.text_field :place, class: 'form-control' %>
+        </div>
+        <div class="col-auto">
+          <%= f.label :capacity, "募集人数" %>
+          <%= f.number_field :capacity,  in: 2...101, class: 'form-control' %>
+        </div>
+        <%# 一旦レイアウトの調整 %>
+        <div class="col-auto">
+          <%= f.label "タグ" %>
+          <%= f.text_field :event_tag, class: 'form-control' %>
+        </div>
+        <div class="col-auto">
+          <%= f.label :start_time, "開始時刻" %>
+          <%= f.datetime_local_field :start_time, class: 'form-control' %>
+        </div>
+        <div class="col-auto">
+          <%= f.label :end_time, "終了時刻" %>
+          <%= f.datetime_local_field :end_time, class: 'form-control' %>
+        </div>
+        <div class="col-auto">
+          <%= f.label :detail, "詳細" %>
+          <%= f.text_area :detail, class: 'form-control', rows: 5 %>
+        </div>
+        <div class="col-auto">
+          <%= f.submit '企画する', class: 'btn btn-primary float-end mt-3' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
