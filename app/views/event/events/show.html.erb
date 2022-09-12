@@ -1,6 +1,14 @@
 <div class="container m-5">
-  <div class="card text-center mx-auto">
-    <div class="card-body">
+  <div class="card">
+      <div>
+      <% if @event.recruitment? %>
+        <p class='btn btn-outline-primary mt-3 ms-3 disabled'>募集中</p>
+      <% else %>
+        <p class="btn btn-outline-secondary mt-3 ms-3 disabled">募集は終了しました</p>
+      <% end %>
+    </div>
+
+    <div class="card-body text-center mx-auto">
       <h3 class="card-title">テニス　対戦相手募集！！</h3>
       <h5>開催日　９月１８日</h5>
       <table class="table table-bordered m-auto">
@@ -39,11 +47,7 @@
       <% else %>
         <p class="mb-0">ユーザー登録するとイベント参加が可能になります。</p>
       <% end %>
-      <% if @event.recruitment? %>
-        <p>募集中</p>
-      <% else %>
-        <p>募集は終了しました</p>
-      <% end %>
+
     </div>
   </div>
 
