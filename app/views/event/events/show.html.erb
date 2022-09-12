@@ -52,11 +52,13 @@
   </div>
 
 <!-- コメント -->
-  <div class="mt-5">
-    <%= turbo_frame_tag 'comments' do %>
-      <%= render partial: 'event/comments/comment_thread', collection: @comments, as: 'comment' %>
-    <% end %>
-    <%= render 'event/comments/comment_form', { event: @event, comment: @comment, url: event_comments_path(@event) } %>
+  <div class="row mt-5">
+    <div class="col-sm-8 offset-sm-2">
+      <%= turbo_frame_tag 'comments' do %>
+        <%= render partial: 'event/comments/comment_thread', collection: @comments, as: 'comment' %>
+      <% end %>
+      <%= render 'event/comments/comment_form', { event: @event, comment: @comment, url: event_comments_path(@event) } %>
+    </div>
   </div>
 
 </div>
