@@ -30,20 +30,17 @@
         </div>
         <div class="col-auto">
           <%= f.label :detail, "詳細" %>
-          <%= f.text_area :detail, class: 'form-control', rows: 5, value: "
-        〇〇大学テニスサークルです！
-        経験年数１〜２年程度のメンバーが1
-        ０人程度参加予定です。
-        ・ラケット等の道具は持参
-        ・参加費　一人あたり３００円
-        ・開催場所　〇〇庭球場
-        こちらの条件で可能なサークル等ご
-        ざいましたらぜひ気軽にご参加
-        ください！
-        連絡先　hogehoge@example.com" %>
+          <%= f.text_area :detail, class: 'form-control', rows: 5, 
+          value: "〇〇大学テニスサークルです！
+経験年数１〜２年程度のメンバーが1０人程度参加予定です。
+  ・ラケット等の道具は持参
+  ・参加費　一人あたり３００円
+  ・開催場所　〇〇庭球場
+こちらの条件で可能なサークル等ございましたらぜひ気軽にご参加ください！
+連絡先　hogehoge@example.com" %>
         </div>
         <div class="col-auto">
-          <%# デモ用リンク %>
+          <%# デモ用リンク、デモ用詳細画面へリンク %>
           <%= link_to '企画する', "#", class: 'btn btn-primary float-end mt-3' %>
         </div>
       </div>
