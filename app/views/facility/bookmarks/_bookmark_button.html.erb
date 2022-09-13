@@ -1,4 +1,4 @@
-<%= turbo_frame_tag 'bookmark' do %>
+<%= turbo_frame_tag "bookmark-#{facility.id}" do %>
   <% if current_user.bookmark?(facility) %>
     <%= render 'facility/bookmarks/unbookmark', facility: facility %>
   <% else %>
