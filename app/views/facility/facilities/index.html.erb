@@ -17,7 +17,7 @@
       </div>
       <%= search_form_for @q, url: root_path do |f| %>
         <div class="modal-body">
-          <div class="col-auto">
+          <div class="col-auto mb-2">
             <%= f.label :municipality_name_eq, '地域', class: 'd-block' %>
             <%= f.select :municipality_name_eq, Municipality.all.map { |municipality| municipality.name }, include_blank: true, placeholder: '検索', class: 'form-control'%>
           </div>
