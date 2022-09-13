@@ -151,9 +151,8 @@ const replaceSwiperContainer = (replaceFacilitiesDiv) => {
     return newElement
   };
 
-  const swiperContainer = createElementAndClass('div', 'container mb-5');
-  swiperContainer.id = 'js-swiper-container'
-  const swiperDiv = createElementAppendChild('div', 'swiper mySwiper mt-3 col-sm-7', swiperContainer);
+  const swiperDiv = createElementAndClass('div', 'swiper mySwiper mt-3 col-sm-7');
+  swiperDiv.id = 'js-swiper'
   const swiperWrapperDiv = createElementAppendChild('div', 'swiper-wrapper', swiperDiv);
 
   replaceFacilitiesDiv.map((facDiv) => {
@@ -162,9 +161,9 @@ const replaceSwiperContainer = (replaceFacilitiesDiv) => {
 
   createElementAppendChild('div', 'swiper-button-next', swiperDiv);
   createElementAppendChild('div', 'swiper-button-prev', swiperDiv);
-  createElementAppendChild('div', 'swiper-pagination pagination-width', swiperDiv);
+  createElementAppendChild('div', 'swiper-pagination w-100', swiperDiv);
 
-  document.getElementById('js-swiper-container').replaceWith(swiperContainer)
+  document.getElementById('js-swiper').replaceWith(swiperDiv)
 };
 
 // 表示されているスライドのinfo windowが開く関数
