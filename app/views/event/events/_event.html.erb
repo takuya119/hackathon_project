@@ -1,8 +1,30 @@
 <%# 一旦表示だけ %>
-<div><%= event.name %></div>
-<div><%= event.start_time %></div>
-<div><%= event.end_time %></div>
-<div><%= event.detail %></div>
-<div><%= event.capacity %></div>
-<div><%= event.status %></div>
-<br>
+<div class="container mt-2">
+  <div class="card text-center m-auto">
+    <div class="card-body">
+      <h2 class="card-title">テニス　対戦相手募集！！</h2>
+      <h5>開催日　９月１８日</h5>
+      <table class="table table-bordered m-auto">
+        <tr class="table-success">
+          <td>開始時間</td>
+          <td>１３：００</td>
+        </tr>
+        <tr class="table-primary">
+          <td>終了時間</td>
+          <td>１７：００</td>
+        </tr>
+        <tr class="table-light">
+          <td>開催場所</td>
+          <td>深川庭球場</td>
+        </tr>
+        <tr class="table-light">
+          <td>募集人数</td>
+          <td>１０人</td>
+        </tr>
+      </table>
+      <div class="input-group-append">
+        <button type="button" class="btn btn-primary btn-sm mt-2">詳細ページ</button>
+      </div>
+    </div>
+  </div>
+</div>

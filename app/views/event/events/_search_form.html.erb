@@ -1,13 +1,33 @@
-<%= search_form_for @q, url: url do |f| %>
-  <div class="input-group mb-3">
-    <%= f.label :name_or_detail_cont, "キーワード" %>
-    <%= f.search_field :name_or_detail_cont, class: 'form-control', placeholder: "検索ワード" %>
-    <%= f.label :start_time_eq, "開催日" %>
-    <%= f.date_field :start_time_gteq, class: 'form-control' %>
-    <p>〜</p>
-    <%= f.date_field :start_time_lteq_end_of_day, class: 'form-control' %>
-    <div class="input-group-append">
-      <%= f.submit "検索", class: 'btn btn-primary' %>
+<div class="m-auto fs-6" style="width: 90%;">
+  <%= search_form_for @q, url: url do |f| %>
+    <div class="row">
+      <div class="form-inline align-items-center mx-auto">
+        <div class="col-auto">
+          <%= f.label :name_or_detail_cont, 'キーワード' %>
+          <%= f.search_field :name_or_detail_cont, placeholder: 'キーワード', class: 'form-control'%>
+        </div>
+        <div class="col-auto">
+          <%= f.label :capacity_gteq, '募集人数' %>
+          <%= f.search_field :capacity_gteq, placeholder: '募集人数', class: 'form-control'%>
+        </div>
+        <div class="col-auto">
+          <%# 一旦見た目だけ調整 %>
+          <%= f.label :name_or_detail_cont, 'タグ' %>
+          <%= f.search_field :name_or_detail_cont, placeholder: '検索', class: 'form-control'%>
+        </div>
+        <div class="col-auto">
+          <%= f.label :start_time_eq, "開催日" %>
+          <div class="d-flex flex-row">
+            <%= f.date_field :start_time_gteq, class: 'form-control'%>
+            <p>〜</p>
+            <%= f.date_field :start_time_lteq_end_of_day, class: 'form-control' %>
+          </div>
+
+        </div>
+        <div class="col-auto">
+          <%= f.submit '検索', class: 'btn btn-primary float-end mt-3' %>
+        </div>
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>

@@ -1,27 +1,49 @@
-<%= form_with model: event, local: true do |f| %>
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :start_time %>
-    <%= f.datetime_local_field :start_time, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :end_time %>
-    <%= f.datetime_local_field :end_time, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :detail %>
-    <%= f.text_area :detail, class: 'form-control', rows: 10 %>
-  </div>
-  <div class="form-group">
-    <%= f.label :capacity %>
-    <%= f.number_field :capacity,  in: 2...101, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :status %>
-    <%= f.select :status, Event.statuses.except(:"中止").keys, class: 'form-control' %>
-  </div>
-  <%= f.submit class: 'btn btn-primary' %>
-<% end %>
+<div class="m-auto fs-6" style="width: 90%;">
+  <%= form_with model: event, local: true do |f| %>
+    <div class="row">
+      <div class="form-inline align-items-center mx-auto">
+        <div class="col-auto">
+          <%= f.label :name, "タイトル" %>
+          <%= f.text_field :name, class: 'form-control', value: "テニス　対戦相手募集！！" %>
+        </div>
+        <%# 一旦レイアウトの調整 %>
+        <div class="col-auto">
+          <%= f.label "場所" %>
+          <%= f.text_field :place, class: 'form-control', value: "深川庭球場" %>
+        </div>
+        <div class="col-auto">
+          <%= f.label :capacity, "募集人数" %>
+          <%= f.number_field :capacity,  in: 2...101, class: 'form-control', value: 10 %>
+        </div>
+        <%# 一旦レイアウトの調整 %>
+        <div class="col-auto">
+          <%= f.label "タグ" %>
+          <%= f.text_field :event_tag, class: 'form-control', value: "テニス" %>
+        </div>
+        <div class="col-auto">
+          <%= f.label :start_time, "開始時刻" %>
+          <%= f.datetime_local_field :start_time, class: 'form-control', value: "2022-09-12T13:00" %>
+        </div>
+        <div class="col-auto">
+          <%= f.label :end_time, "終了時刻" %>
+          <%= f.datetime_local_field :end_time, class: 'form-control', value: "2022-09-12T18:00" %>
+        </div>
+        <div class="col-auto">
+          <%= f.label :detail, "詳細" %>
+          <%= f.text_area :detail, class: 'form-control', rows: 5, 
+          value: "〇〇大学テニスサークルです！
+経験年数１〜２年程度のメンバーが1０人程度参加予定です。
+  ・ラケット等の道具は持参
+  ・参加費　一人あたり３００円
+  ・開催場所　〇〇庭球場
+こちらの条件で可能なサークル等ございましたらぜひ気軽にご参加ください！
+連絡先　hogehoge@example.com" %>
+        </div>
+        <div class="col-auto">
+          <%# デモ用リンク、デモ用詳細画面へリンク %>
+          <%= link_to '企画する', "#", class: 'btn btn-primary float-end mt-3' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
