@@ -1,2 +1,30 @@
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons";
+@import "swiper/swiper-bundle";
+
+#map {
+  height: 55vh;
+  border: ridge 12px #cccccc;
+}
+
+@media screen and (min-width: 544px) {
+  #map {
+    height: 75vh;
+  }
+
+  .pagination-width {
+    width: 60% !important;
+  }
+}
+
+.border-text {
+  color: #FFF;
+  text-shadow: 1px 1px 0 #555c62, -1px -1px 0 #555c62,
+    -1px 1px 0 #555c62, 1px -1px 0 #555c62,
+    0px 1px 0 #555c62, 0 -1px 0 #555c62,
+    -1px 0 0 #555c62, 1px 0 0 #555c62;
+}
+
+.little-letter-space {
+  letter-spacing: 0.1rem;
+}

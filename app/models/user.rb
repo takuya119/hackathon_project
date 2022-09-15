@@ -25,7 +25,7 @@ class User < ApplicationRecord
   end
 
   def bookmark?(public_facility)
-    bookmark_facilities.include?(public_facility)
+    public_facility.bookmarks.pluck(:user_id).include?(id)
   end
 
   def participation(event)

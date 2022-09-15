@@ -1,13 +1,13 @@
 <header>
-  <nav class="navbar navbar-light bg-light">
+  <nav class="navbar bg-primary py-sm-1">
     <div class="container-fluid">
-      <span class="navbar-brand mb-0 h1">Navbar</span>
+      <span class="navbar-brand mb-0 text-white fs-3 ms-2 little-letter-space">youth-place</span>
       <% if logged_in? %>
-        <%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete }, class:"btn btn-primary" %>
+        <%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete }, class:"text-decoration-none text-white me-2" %>
       <% else %>
         <div>
-          <%= link_to '新規登録', signup_path, class:"btn btn-primary" %>
-          <%= link_to 'ログイン', login_path, class:"btn btn-primary" %>
+          <%= link_to '新規登録', signup_path, class:"text-decoration-none text-white me-2" %>
+          <%= link_to 'ログイン', login_path, class:"text-decoration-none text-white me-2" %>
         </div>
       <% end %>
     </div>
