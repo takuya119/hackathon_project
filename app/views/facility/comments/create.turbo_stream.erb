@@ -1,7 +1,7 @@
-<%= turbo_stream.append('comments',
+<%= turbo_stream.append("#{@comment.comment_type}_comments",
                         partial: 'facility/comments/comment_thread',
                         locals: { comment: @comment }) %>
 
-<%= turbo_stream.replace 'comment_form',
+<%= turbo_stream.replace "#{@comment.comment_type}_form",
                           partial: 'facility/comments/comment_form',
-                          locals: { facility: @facility, comment: FacilityComment.new, url: facility_comments_path(@facility) } %>
+                          locals: { facility: @facility, comment: FacilityComment.new, comment_type: @comment.comment_type, url: facility_comments_path(@facility) } %>

@@ -1,15 +1,16 @@
-<div class="col-sm-3">
-  <div class="card text-center mx-auto" style="width: 18rem;">
+<div class="col-sm-4 mb-2">
+  <div class="card text-center mx-auto">
     <div class="card-body">
       <h3 class="card-title"><%= room.name %></h3>
       <p class="card-text">詳細: <%= room.description %></p>
-      <p class="card-text">利用人数: <%= room.capacity %></p>
+      <p class="card-text">収容数: <%= room.capacity %> 人</p>
       <p class="card-text">
         <% room.tags.each do |tag| %>
-          <%= tag.name %>
+          <small class="btn btn-outline-success rounded-4 btn-sm"><%= tag.name %></small>
         <% end %>
       </p>
       <%= link_to 'ルーム宛コメント等', '#', class: 'btn btn-primary' %>
+      <%= link_to '企画する', new_event_path(room_id: room.id), class: 'btn btn-primary' %>
     </div>
   </div>
 </div>
